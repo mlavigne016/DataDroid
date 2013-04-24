@@ -98,39 +98,39 @@ public final class CrudSyncPhoneListActivity extends DataDroidActivity implement
         mUserId = UserManager.getUserId(this);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        for (int i = 0; i < mRequestList.size(); i++) {
-            Request request = mRequestList.get(i);
-            int requestType = request.getRequestType();
-
-            if (mRequestManager.isRequestInProgress(request)) {
-                mRequestManager.addRequestListener(this, request);
-                if (requestType == PoCRequestFactory.REQUEST_TYPE_CITY_LIST) {
-                    setProgressBarIndeterminateVisibility(true);
-                }
-            } else {
-                if (requestType != PoCRequestFactory.REQUEST_TYPE_CITY_LIST) {
-                    ProgressDialogFragment.dismiss(this);
-                }
-                mRequestManager.callListenerWithCachedData(this, request);
-                i--;
-            }
-        }
-
-        if (!mArePhonesLoaded) {
-            callSyncPhoneListWS();
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (!mRequestList.isEmpty()) {
-            mRequestManager.removeRequestListener(this);
-        }
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        for (int i = 0; i < mRequestList.size(); i++) {
+//            Request request = mRequestList.get(i);
+//            int requestType = request.getRequestType();
+//
+//            if (mRequestManager.isRequestInProgress(request)) {
+//                mRequestManager.addRequestListener(this, request);
+//                if (requestType == PoCRequestFactory.REQUEST_TYPE_CITY_LIST) {
+//                    setProgressBarIndeterminateVisibility(true);
+//                }
+//            } else {
+//                if (requestType != PoCRequestFactory.REQUEST_TYPE_CITY_LIST) {
+//                    ProgressDialogFragment.dismiss(this);
+//                }
+//                mRequestManager.callListenerWithCachedData(this, request);
+//                i--;
+//            }
+//        }
+//
+//        if (!mArePhonesLoaded) {
+//            callSyncPhoneListWS();
+//        }
+//    }
+//
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        if (!mRequestList.isEmpty()) {
+//            mRequestManager.removeRequestListener(this);
+//        }
+//    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {

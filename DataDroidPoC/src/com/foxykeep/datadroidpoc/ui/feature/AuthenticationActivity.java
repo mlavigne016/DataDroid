@@ -36,30 +36,30 @@ public final class AuthenticationActivity extends DataDroidActivity implements R
         bindViews();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        for (int i = 0; i < mRequestList.size(); i++) {
-            Request request = mRequestList.get(i);
-
-            if (mRequestManager.isRequestInProgress(request)) {
-                mRequestManager.addRequestListener(this, request);
-                setProgressBarIndeterminateVisibility(true);
-            } else {
-                mRequestManager.callListenerWithCachedData(this, request);
-                i--;
-                mRequestList.remove(request);
-            }
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (!mRequestList.isEmpty()) {
-            mRequestManager.removeRequestListener(this);
-        }
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        for (int i = 0; i < mRequestList.size(); i++) {
+//            Request request = mRequestList.get(i);
+//
+//            if (mRequestManager.isRequestInProgress(request)) {
+//                mRequestManager.addRequestListener(this, request);
+//                setProgressBarIndeterminateVisibility(true);
+//            } else {
+//                mRequestManager.callListenerWithCachedData(this, request);
+//                i--;
+//                mRequestList.remove(request);
+//            }
+//        }
+//    }
+//
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        if (!mRequestList.isEmpty()) {
+//            mRequestManager.removeRequestListener(this);
+//        }
+//    }
 
     private void bindViews() {
         ((Button) findViewById(R.id.b_load)).setOnClickListener(this);
